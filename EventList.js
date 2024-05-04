@@ -1,39 +1,37 @@
-// components/EventList.js
+import React, { useState } from 'react';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import moment from 'moment';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
-import React, { useState, useEffect } from 'react';
 
-function EventList() {
-    const [events, setEvents] = useState([]);
+const localizer = momentLocalizer(moment);
 
-    useEffect(() => {
-        // Fetch event data from backend API
-        // Example:
-        // fetch('/api/events')
-        //     .then(response => response.json())
-        //     .then(data => setEvents(data))
-        //     .catch(error => console.error('Error fetching events:', error));
+function MyCalendar() {
+  const [events, setEvents] = useState([]);
 
-        // Mock event data
-        const mockEvents = [
-            { id: 1, title: 'Event 1', date: '2024-05-10', location: 'Location 1' },
-            { id: 2, title: 'Event 2', date: '2024-05-15', location: 'Location 2' },
-            { id: 3, title: 'Event 3', date: '2024-05-20', location: 'Location 3' }
-        ];
-        setEvents(mockEvents);
-    }, []);
+  const handleSelectSlot = ({ start, end }) => {
+    const title = window.prompt('Enter Event Title:');
+    if (title) {
+      const newEvent = { start, end, title };
+      setEvents([...events, newEvent]);
+    }
+  };
 
-    return (
-        <div>
-            <h2>Event List</h2>
-            <ul>
-                {events.map(event => (
-                    <li key={event.id}>
-                        <strong>{event.title}</strong> - {event.date}, {event.location}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+  return (
+    <div>
+      <h2>Create Events on your Calendar!</h2>
+      <Calendar
+        localizer={localizer}
+        events={events}
+        startAccessor="start"
+        endAccessor="end"
+        selectable
+        onSelectSlot={handleSelectSlot}
+        style={{ height: 500 }}
+      />
+    </div>
+  );
 }
 
-export default EventList;
+export default MyCalendar;
+
