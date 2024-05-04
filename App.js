@@ -15,7 +15,6 @@ function App() {
     e.preventDefault();
     const inputEmail = e.target.elements.email.value;
     const inputPassword = e.target.elements.password.value;
-
     if (inputEmail && inputPassword) {
       setEmail(inputEmail);
       setLoggedIn(true);
