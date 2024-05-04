@@ -7,7 +7,6 @@ function EventForm() {
     return (
         <div>
             <h2>Create Event</h2>
-            {/* Form inputs for event title, date, location */}
         </div>
     );
 }
