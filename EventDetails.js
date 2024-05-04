@@ -15,16 +15,6 @@ function EventDetails() {
     // }, [eventId]);
 
     // For now, just display static event details
-    const event = { id: 1, title: 'Event 1', date: '2024-05-10', location: 'Location 1' };
-
-    return (
-        <div>
-            <h2>Event Details</h2>
-            <p><strong>Title:</strong> {event.title}</p>
-            <p><strong>Date:</strong> {event.date}</p>
-            <p><strong>Location:</strong> {event.location}</p>
-        </div>
-    );
 }
 
 export default EventDetails;
